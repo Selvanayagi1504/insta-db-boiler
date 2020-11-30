@@ -42,7 +42,7 @@ class sampleRoute{
         const response = await this.controller.login(req.params.moboremail,req.params.password);
         if(response=="success"){
           // const token=JWT.signin({id:req.params.moboremail},86400);
-          // const token="1234"
+          const token="1234"
           res.json({
             status: true,
             token: token
