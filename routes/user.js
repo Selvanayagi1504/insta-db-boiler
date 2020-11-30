@@ -15,22 +15,12 @@ var storage = multer.diskStorage({
   }
 })
 var upload = multer({ storage: storage });
-// class sample{
-//   constructor(JWT) {
-//     JWT= JWT
-//     // this.init()
-//   }
-// }
-// const Jwt=require('./../services/jwt')
-// const JWT=new Jwt();
-// const JWT=require('./../services/jwt')
-class sampleRoute{
+
+class sampleRoute {
   constructor(sampleContoller) {
-    // super(JWT);
     this.controller = sampleContoller
     this.init()
   }
-  
 
   init() {
     router.use('/', async (req, res, next) => {
@@ -61,9 +51,6 @@ class sampleRoute{
     })
     router.get('/getallusers',async(req,res)=>{
       try {
-            // const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];    
-            // const tokenres=JWT.verify(token);
-            // console.log(tokenres)        
             const response = await this.controller.getallusers()
             res.json(response)
           } catch (err) {
@@ -72,9 +59,6 @@ class sampleRoute{
     })
     router.get('/getuser/:moboremail',async(req,res)=>{
       try {
-            // const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];    
-            // const tokenres=JWT.verify(token);
-            // console.log(tokenres) 
             const response = await this.controller.getuser(req.params.moboremail)
             res.json(response)
           } catch (err) {
@@ -83,9 +67,6 @@ class sampleRoute{
     })
     router.post('/changepost/:email',async(req,res)=>{
       try {
-        // const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];    
-        // const tokenres=JWT.verify(token);
-        // console.log(tokenres) 
         var p=JSON.stringify(req.body);
         var ma=req.params.email
         const response = await this.controller.changepost(p,ma)
@@ -96,9 +77,6 @@ class sampleRoute{
     })
     router.post('/changefav/:email',async(req,res)=>{
       try {
-        // const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];    
-        // const tokenres=JWT.verify(token);
-        // console.log(tokenres) 
         var p=JSON.stringify(req.body);
         var ma=req.params.email
         const response = await this.controller.changefav(p,ma)
@@ -109,9 +87,6 @@ class sampleRoute{
     })
     router.post('/changepass/:email',async(req,res)=>{
       try {
-        // const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];    
-        // const tokenres=JWT.verify(token);
-        // console.log(tokenres) 
         let npass;
         req.body.forEach(k=>{
           npass= k.pass
@@ -125,9 +100,6 @@ class sampleRoute{
     })
     router.post('/changepoto/:email',async(req,res)=>{
       try {
-        // const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];    
-        // const tokenres=JWT.verify(token);
-        // console.log(tokenres) 
         let npro;
         req.body.forEach(k=>{
           npro= k.url
@@ -141,9 +113,6 @@ class sampleRoute{
     })
     router.post('/edit/:email',async(req,res)=>{
       try {
-        // const token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];    
-        // const tokenres=JWT.verify(token);
-        // console.log(tokenres) 
         var email=req.params.email
         const response = await this.controller.edit(req.body,email)
         res.json(response)
@@ -152,14 +121,6 @@ class sampleRoute{
       }
     })
     router.post('/saveuser',async(req,res)=>{
-      try {
-        const response = await this.controller.saveuser(req.body)
-        res.json(response)
-      } catch (err) {
-        res.json({ code: 500, msg: 'getting Accesses Failed' })
-      }
-    })
-    router.get('/ct',async(req,res)=>{
       try {
         const response = await this.controller.saveuser(req.body)
         res.json(response)
